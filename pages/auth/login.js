@@ -134,7 +134,8 @@ Page({
         signature: this.data.userInfo.signature,
         encryptedData: this.data.userInfo.encryptedData,
         iv: this.data.userInfo.iv
-      }
+      },
+      isv: wx.getStorageSync('isv')
     }).then(res => {
       wx.setStorageSync('access_token', res.token);
 

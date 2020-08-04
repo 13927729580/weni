@@ -20,7 +20,8 @@
     "pages/course/detail",
     "pages/course/video",
     "pages/order/index",
-    "pages/member/course"
+    "pages/member/course",
+    "pages/addons/InviteSendVip/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

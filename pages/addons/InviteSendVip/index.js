@@ -1,4 +1,9 @@
-const app = getApp();
+import {
+  user,
+  inviteSendVip
+} from '../../../api/index'
+
+const app = getApp()
 
 Page({
 
@@ -6,7 +11,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    version: ''
+    user: null,
+    config: null,
+    records: [],
+    link: '',
+    role: null,
+    inviteCount: 0
   },
 
   /**
@@ -27,9 +37,22 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      version: app.globalData.version
-    });
+    user.info().then(res => {
+      this.setData({
+        user: res,
+        link: '/pages/auth/login?isv=' + res.id
+      });
+    })
+
+
+    inviteSendVip.user().then(res => {
+      this.setData({
+        config: res.config,
+        records: res.records,
+        role: res.role,
+        inviteCount: res.invite_count
+      });
+    })
   },
 
   /**
@@ -64,24 +87,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
-  },
-
-  openUserProtocol() {
-    wx.navigateTo({
-      url: '/pages/common/web?url=' + app.globalData.user_protocol,
-    })
-  },
-
-  openUserPrivateProtocol() {
-    wx.navigateTo({
-      url: '/pages/common/web?url=' + app.globalData.user_private_protocol,
-    })
-  },
-
-  openAboutUs() {
-    wx.navigateTo({
-      url: '/pages/common/web?url=' + app.globalData.aboutus,
-    })
+    return {
+      title: app.globalData.AppName,
+      path: `/pages/index/index?isv=${this.data.user.id}`,
+      imageUrl: app.globalData.logo
+    }
   }
 })

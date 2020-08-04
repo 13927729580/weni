@@ -1,5 +1,7 @@
 import { home } from '../../api/index'
 
+import util from '../../utils/util'
+
 Page({
 
   /**
@@ -25,6 +27,11 @@ Page({
         sliders: res
       });
     })
+
+    // 检测邀请的isv
+    if (options.isv) {
+      wx.setStorageSync('isv', options.isv);
+    }
   },
 
   /**
@@ -77,7 +84,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: app.globalData.AppName,
+      path: `/pages/index/index`,
+      imageUrl: app.globalData.logo
+    }
   },
   goSearch() {
     wx.navigateTo({
@@ -87,9 +98,6 @@ Page({
 
   goPage(e) {
     let page = e.currentTarget.dataset.page;
-    console.log(page);
-    wx.navigateTo({
-      url: page,
-    })
+    util.go(page, true)
   }
 })

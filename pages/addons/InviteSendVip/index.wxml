@@ -1,0 +1,49 @@
+<view class="user">
+  <view class="avatar">
+    <image src="{{user.avatar}}" width="32" height="32" />
+  </view>
+  <view class="nickname">
+    {{user.nick_name}}
+  </view>
+  <view class="invite-count">已邀请{{inviteCount}}人</view>
+</view>
+
+<view class="pd">
+  <view class="link">
+    <view class="title">邀请</view>
+    <view class="body">
+      <button open-type="share" class="copy">立即邀请</button>
+    </view>
+  </view>
+</view>
+
+<view class="pd">
+  <view class="rule">
+    <view class="title">邀请规则</view>
+    <view class="body">
+      <view class="item">1.邀请用户每满 {{config.reward_per_user_count}} 人，奖励{{role.name}} {{config.reward_role_days}}天。
+      </view>
+      <view class="item">2.不得邀请非真实用户（比如说机器产生的），否则本站有权收回奖励。</view>
+      <view class="item">3.活动最终解释权归本站所所有。</view>
+    </view>
+  </view>
+</view>
+
+<view class="pd">
+  <view class="invite-records">
+    <view class="title">邀请记录</view>
+    <view class="body">
+      <block wx:if="{{records.length > 0}}">
+        <view class="item" wx:for="{{records}}" wx:for-item="record" wx:key="id">
+          <view class="user-nickname">
+            {{ record.invite_user.nick_name }}
+          </view>
+          <view class="result">
+            <text class="ok"></text>
+          </view>
+        </view>
+      </block>
+      <view class="none" wx:else>赶快去邀请吧~</view>
+    </view>
+  </view>
+</view>

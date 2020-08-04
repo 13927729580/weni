@@ -6,6 +6,7 @@ import * as order from './order'
 import * as login from './login'
 import * as home from './home'
 import * as base from './base'
+import * as inviteSendVip from './inviteSendVip'
 
 module.exports = {
     course,
@@ -15,5 +16,6 @@ module.exports = {
     order,
     login,
     home,
-    base
+    base,
+    inviteSendVip
 }

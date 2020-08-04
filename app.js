@@ -11,6 +11,9 @@ App({
       this.globalData.user_private_protocol = res.user_private_protocol;
       this.globalData.aboutus = res.aboutus;
       this.globalData.player_cover = res.player.cover;
+      this.globalData.logo = res.logo.logo;
+      this.globalData.white_logo = res.logo.white_logo;
+      this.webname = res.wenname;
     })
 
     // 小程序session flash
@@ -26,7 +29,10 @@ App({
   },
   globalData: {
     AppName: 'MeEdu',
-    Version: 'v2.0',
+    version: 'v2.0.3',
+    webnam: '',
+    logo: '',
+    white_logo: '',
     user_protocol: '',
     user_private_protocol: '',
     aboutus: '',
